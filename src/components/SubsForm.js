@@ -4,7 +4,7 @@ import Tags from './Tags';
 export default function SubsForm({ subAdded }) {
     const [name, setName] = useState('');
     const [url, setUrl] = useState('');
-    const [trials, setTrial] = useState([]);
+    const [trial, setTrial] = useState([]);
     const [date, setDate]=useState('')
     const [edate, setEdate]=useState('')
     const [amount, setAmount]=useState('')
@@ -22,12 +22,12 @@ export default function SubsForm({ subAdded }) {
     const submitSub = async (e) => {
         e.preventDefault();
         try {
-            await fetch('/api/courses', {
+            await fetch('/api/subscriptions', {
                 method: 'POST',
                 body: JSON.stringify({
                     name,
                     url,
-                    trials,
+                    trial,
                     date,
                     edate,
                     amount
@@ -71,13 +71,13 @@ export default function SubsForm({ subAdded }) {
                         <Tags tagsUpdated={setTrial} key={count} />
                     </div>
                     <div className="form-group">
-                        <label className="col-2 col-form-label">Start Date</label>
+                        <label className="col-form-label">Start Date</label>
                            
                                 <input className="form-control" type="date" name="date" value={date} onChange={(e) => setDate(e.target.value)} />
                             
                     </div>
                     <div className="form-group">
-                        <label className="col-2 col-form-label">Renew Date</label>
+                        <label className="col-form-label">Renew Date</label>
                             
                                 <input className="form-control" type="date" name="edate" value={edate} onChange={(e) => setEdate(e.target.value)} />
                             

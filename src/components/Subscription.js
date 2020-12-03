@@ -51,6 +51,7 @@ export default function Subscription({ subscription, refreshSubs }) {
             </p>
                     <h5 className="list-group-item-heading">Start Date: {subscription.date}</h5>
                     <h5 className="list-group-item-heading">Renew Date: {subscription.edate}</h5>
+                    <h6 className="list-group-item-heading">Amount: {subscription.amount}</h6>
             {!subscription.archive && (
                 <button
                     className="btn btn-sm btn-primary"

@@ -1,12 +1,13 @@
 import React from 'react';
 import Subscription from './Subscription';
 
-export default function SubsList({ subscriptions, refreshSubs }) {
+export default function SubsList({ subs, refreshSubs }) {
     return (
         <div>
             <h2 className="mt-5 mb-3">Your Subscriptions</h2>
             <div className="list-group">
-                {subscriptions
+                <>
+                {subs
                     .filter((subscription) => !subscription.archive)
                     .map((subscription) => (
                         <Subscription
@@ -14,10 +15,11 @@ export default function SubsList({ subscriptions, refreshSubs }) {
                             key={subscription.id}
                             refreshSubs={refreshSubs}
                         />
-                    ))}
+                    ))}</>
             </div>
             <h2 className="mt-5 mb-3">Marked</h2>
-            {subscriptions
+            <>
+            {subs
                 .filter((subscription) => subscription.archive)
                 .map((subscription) => (
                     <Subscription
@@ -26,7 +28,7 @@ export default function SubsList({ subscriptions, refreshSubs }) {
                         refreshSubs={refreshSubs}
                     />
                     
-                ))}
+                ))}</>
                 
         </div>
     );
