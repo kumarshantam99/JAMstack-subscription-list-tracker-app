@@ -1,35 +1,38 @@
-import React,{useState,useEffect} from 'react';
-import './App.css';
+import React from 'react'
 
-import SubsForm from './components/SubsForm'
-import SubsList from './components/SubsList'
+import './App.css';
+import {AuthProvider} from './context/AuthContext'
+import  {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
+
+import Signup from './components/Signup'
+import Dashboard from './components/Dashboard'
+import Login from './components/Login'
+import PrivateRoute from './components/PrivateRoute'
+import ForgotPassword from './components/ForgotPassword'
+import UpdateProfile from './components/UpdateProfile';
 
 function App() {
-  const [subs,setSubs]=useState([])
-  const res=fetch('/api/subscriptions',{method:'GET'}).then((subs)=>subs.json())
-  const loadSubs=async ()=>{
-    try{
-      
-      const subs=await res
-      
-      console.log(subs)
-      setSubs(subs);
-
-    }catch(err){
-      console.error(err)
-    }
-  }
-  useEffect(() => {
-    loadSubs();
-  }, []);
+  
   return (
-    <div className="container mt-5">
-      <h1 className="mb-5 text-center">Subscriptions Tracker</h1>
-      <SubsForm subAdded={loadSubs} />
-      <SubsList subs={subs} refreshSubs={loadSubs} />
+    
+      <Router>
+        <AuthProvider>
+          <Switch>
+            <PrivateRoute exact path="/" component={Dashboard} />
+            <PrivateRoute path="/update-profile" component={UpdateProfile} />
+            
+            
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+            <Route path="/forgot-password" component={ForgotPassword} />
+          </Switch>
+
+        </AuthProvider>
+      </Router>
+      
 
       
-    </div>
+   
   )
 }
 

@@ -43,7 +43,7 @@ export default function SubsForm({ subAdded }) {
 
     return (
         <div className="card">
-            <div className="card-header">Add a New Subscription</div>
+            <div className="card-header text-center mb-4">Add a New Subscription</div>
             <div className="card-body">
                 <form className="" onSubmit={submitSub}>
                     <div className="form-group">

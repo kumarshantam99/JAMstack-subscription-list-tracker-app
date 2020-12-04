@@ -7,8 +7,8 @@ export default function Subscription({ subscription, refreshSubs }) {
             await fetch('/api/subscriptions', {
                 method: 'PUT',
                 body: JSON.stringify({ ...subscription, archive: false }),
-            });
-            refreshSubs();
+            }).then(refreshSubs());
+            
         } catch (err) {
             console.error(err);
         }
@@ -19,8 +19,8 @@ export default function Subscription({ subscription, refreshSubs }) {
             await fetch('/api/subscriptions', {
                 method: 'PUT',
                 body: JSON.stringify({ ...subscription, archive: true }),
-            });
-            refreshSubs();
+            }).then(refreshSubs());
+            
         } catch (err) {
             console.error(err);
         }
@@ -31,8 +31,8 @@ export default function Subscription({ subscription, refreshSubs }) {
             await fetch('/api/subscriptions', {
                 method: 'DELETE',
                 body: JSON.stringify({ id: subscription.id }),
-            });
-            refreshSubs();
+            }).then(refreshSubs());
+            
         } catch (err) {
             console.error(err);
         }
